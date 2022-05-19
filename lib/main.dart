@@ -2,7 +2,10 @@ import 'package:advanced_compilers_web/source_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'const/code_patterns.dart';
+
 void main() {
+  // print(CodePatterns.operators.join("|"));
   runApp(const MyApp());
 }
 
