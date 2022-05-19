@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rich_text_controller/rich_text_controller.dart';
 
+import '../const/code_patterns.dart';
 import '../util/insert_tab_fix.dart';
 
 class SourceArea extends StatelessWidget {
-  final TextEditingController controller;
+  final RichTextController _controller = RichTextController(
+    patternMatchMap: CodePatterns.codePatterns,
+    onMatch: (List<String> matches) {
+      print("matches: ${matches}");
+    },
+  );
   final int tabSpaces = 4;
 
-  const SourceArea({
+  SourceArea({
     Key? key,
-    required this.controller,
   }) : super(key: key);
 
   @override
@@ -26,11 +32,11 @@ class SourceArea extends StatelessWidget {
         child: Actions(
           actions: {InsertTabIntent: InsertTabAction()},
           child: Shortcuts(
-            shortcuts: {LogicalKeySet(LogicalKeyboardKey.tab): InsertTabIntent(tabSpaces, controller)},
+            shortcuts: {LogicalKeySet(LogicalKeyboardKey.tab): InsertTabIntent(tabSpaces, _controller)},
             child: TextField(
               style: Theme.of(context).textTheme.bodyText1,
               cursorColor: Colors.grey[600],
-              controller: controller,
+              controller: _controller,
               maxLines: null,
               keyboardType: TextInputType.multiline,
               decoration: const InputDecoration.collapsed(hintText: ""),

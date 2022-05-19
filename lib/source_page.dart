@@ -2,8 +2,6 @@ import 'package:advanced_compilers_web/widget/source_area.dart';
 import 'package:flutter/material.dart';
 
 class SourcePage extends StatelessWidget {
-  final sourceAreaController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,7 +17,6 @@ class SourcePage extends StatelessWidget {
                 const SizedBox(height: 20),
                 Expanded(
                   child: SourceArea(
-                    controller: sourceAreaController,
                   ),
                 )
               ],
