@@ -38,7 +38,7 @@ class SourceArea extends StatelessWidget {
         children: [
           SizedBox(
             height: 42,
-            child: TabView(),
+            child: TabView(sourceCodeController: _controller),
           ),
           Expanded(
             flex: 12,
@@ -46,7 +46,7 @@ class SourceArea extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Obx(() {
                 _controller.text = tabController.getCode();
-                _controller.selection = TextSelection.fromPosition(TextPosition(offset: _controller.text.length));
+                // _controller.selection = tabController.getCodeSelection();
                 return Actions(
                   actions: {InsertIndentationIntent: InsertIndentationAction()},
                   child: Shortcuts(
@@ -60,7 +60,7 @@ class SourceArea extends StatelessWidget {
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
                       decoration: const InputDecoration.collapsed(hintText: ""),
-                      onChanged: (String code) => _sourceChanged(code),
+                      onChanged: (String code) => _sourceChanged(code, _controller),
                     ),
                   ),
                 );
@@ -72,8 +72,9 @@ class SourceArea extends StatelessWidget {
     );
   }
 
-  _sourceChanged(code) {
-    print("source: $code");
-    tabController.setCode(code);
+  _sourceChanged(code, RichTextController _controller) {
+    print("source changed: $code");
+    // tabController.setCode(code);
+    // _lastSelectionPosition = _controller.selection;
   }
 }

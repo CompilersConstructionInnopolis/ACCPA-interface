@@ -27,7 +27,7 @@ class TabTile extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: active ? const Color(0xffeeeeee) : Colors.white38,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
               ),
               child: Stack(children: [
                 Positioned(

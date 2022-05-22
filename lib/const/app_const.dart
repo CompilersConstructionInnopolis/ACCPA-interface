@@ -7,5 +7,5 @@ class AppConst {
 
   static const sorry = 'Sorry';
 
-  static const restrictedTabMessage = 'You cannot create or remove tab with that title';
+  static const restrictedTabMessage = 'You cannot create or remove this tab';
 }

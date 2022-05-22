@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../const/app_const.dart';
@@ -7,6 +8,7 @@ class TabController extends GetxController {
   final tabs = <tab_model.Tab>[AppConst.defaultTab].obs;
   final currentTabIndex = 0.obs;
   static int staticTabCounter = 0; // todo сделать возможным наименование табов
+  // final _lastSelectionPosition = TextSelection.fromPosition(const TextPosition(offset: 0)).obs;
 
   createNewTab({required String title}) {
     tabs.value.add(tab_model.Tab(title: title + "$staticTabCounter", code: ''));
@@ -18,7 +20,12 @@ class TabController extends GetxController {
 
   removeTab(tab_model.Tab tab) {
     if (isRestricted(tab)) {
-      Get.snackbar(AppConst.sorry, AppConst.restrictedTabMessage);
+      Get.snackbar(
+        AppConst.sorry, AppConst.restrictedTabMessage,
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 18),
+      );
+
       return;
     }
     tabs.value.remove(tab);

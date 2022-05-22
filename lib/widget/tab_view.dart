@@ -1,6 +1,7 @@
 import 'package:advanced_compilers_web/widget/tab_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rich_text_controller/rich_text_controller.dart';
 
 import '../controller/tab_controller.dart' as tab_controller;
 import '../entity/tab.dart' as tab_model;
@@ -9,7 +10,12 @@ import 'add_button.dart';
 class TabView extends StatelessWidget {
   final tabController = Get.find<tab_controller.TabController>();
 
-  TabView({Key? key}) : super(key: key);
+  RichTextController sourceCodeController;
+
+  TabView({
+    Key? key,
+    required this.sourceCodeController,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +59,13 @@ class TabView extends StatelessWidget {
 
   _tabPressed(tab) {
     print("this tab pressed");
+    tabController.setCode(sourceCodeController.text);
     tabController.selectTab(tab);
   }
 
   _addPressed() {
     print("add button pressed");
+    tabController.setCode(sourceCodeController.text);
     tabController.createNewTab(title: 'file_');
   }
 }
