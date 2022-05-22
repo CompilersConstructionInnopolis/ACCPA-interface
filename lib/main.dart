@@ -1,11 +1,14 @@
-import 'package:advanced_compilers_web/source_page.dart';
+import 'package:advanced_compilers_web/page/source_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'const/code_patterns.dart';
+import 'package:get/get.dart';
+
+import '../controller/tab_controller.dart' as tab_controller;
 
 void main() {
-  // print(CodePatterns.operators.join("|"));
+  Get.put(tab_controller.TabController());
+
   runApp(const MyApp());
 }
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Plus++ interface',
       theme: ThemeData(
         fontFamily: 'Georgia',
