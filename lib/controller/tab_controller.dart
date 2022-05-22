@@ -7,15 +7,13 @@ import '../entity/tab.dart' as tab_model;
 class TabController extends GetxController {
   final tabs = <tab_model.Tab>[AppConst.defaultTab].obs;
   final currentTabIndex = 0.obs;
-  static int staticTabCounter = 0; // todo сделать возможным наименование табов
   // final _lastSelectionPosition = TextSelection.fromPosition(const TextPosition(offset: 0)).obs;
 
   createNewTab({required String title}) {
-    tabs.value.add(tab_model.Tab(title: title + "$staticTabCounter", code: ''));
+    tabs.value.add(tab_model.Tab(title: title, code: ''));
     currentTabIndex.value = tabs.value.length - 1;
     tabs.refresh();
     currentTabIndex.refresh();
-    staticTabCounter++;
   }
 
   removeTab(tab_model.Tab tab) {

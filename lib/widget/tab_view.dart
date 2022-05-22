@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:advanced_compilers_web/widget/tab_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 
+import '../const/app_const.dart';
 import '../controller/tab_controller.dart' as tab_controller;
 import '../entity/tab.dart' as tab_model;
 import 'add_button.dart';
@@ -48,7 +51,7 @@ class TabView extends StatelessWidget {
             children: [
               ...tabWidgets,
               AddButton(
-                onPressed: _addPressed,
+                onPressed: () => _addPressed(context),
               ),
             ],
           ),
@@ -63,9 +66,54 @@ class TabView extends StatelessWidget {
     tabController.selectTab(tab);
   }
 
-  _addPressed() {
+  _addPressed(context) async {
     print("add button pressed");
+    TextEditingController titleFieldController = TextEditingController();
+    await Get.defaultDialog(
+        title: "Create new file",
+        titlePadding: const EdgeInsets.only(top: 24),
+        titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),
+        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        content: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SizedBox(
+                  child: Center(
+                    child: TextField(
+                      style: Theme.of(context).textTheme.bodyText1,
+                      cursorColor: Colors.grey[600],
+                      controller: titleFieldController,
+                      decoration: const InputDecoration.collapsed(hintText: ""),
+                      onSubmitted: (_) => Get.back(),
+                      maxLines: 1,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ));
+    String title = titleFieldController.text;
+    if (!_isTitleValid(title)) {
+      Get.snackbar(
+        AppConst.sorry,
+        AppConst.invalidFileName,
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 18),
+      );
+      return;
+    }
     tabController.setCode(sourceCodeController.text);
-    tabController.createNewTab(title: 'file_');
+    tabController.createNewTab(title: title);
+  }
+
+  bool _isTitleValid(String title) {
+    return title.isNotEmpty;
   }
 }

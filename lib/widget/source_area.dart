@@ -7,7 +7,6 @@ import 'package:rich_text_controller/rich_text_controller.dart';
 import '../const/syntax_highlighting.dart';
 import '../util/insert_indentation_fix.dart';
 import '../controller/tab_controller.dart' as tab_controller;
-import '../entity/tab.dart' as tab_model;
 
 class SourceArea extends StatelessWidget {
   final tabController = Get.find<tab_controller.TabController>();
@@ -23,7 +22,7 @@ class SourceArea extends StatelessWidget {
       text: tabController.getCode(),
       patternMatchMap: SyntaxHighlighting.codePatterns,
       onMatch: (List<String> matches) {
-        print("matches: ${matches}");
+        // print("matches: ${matches}");
       },
     );
     return Container(
@@ -74,7 +73,5 @@ class SourceArea extends StatelessWidget {
 
   _sourceChanged(code, RichTextController _controller) {
     print("source changed: $code");
-    // tabController.setCode(code);
-    // _lastSelectionPosition = _controller.selection;
   }
 }

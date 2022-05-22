@@ -5,7 +5,10 @@ class AppConst {
 
   static const restrictedTabTitles = ['main', 'std'];
 
+  // messages
   static const sorry = 'Sorry';
-
+  static const running = 'Running...';
   static const restrictedTabMessage = 'You cannot create or remove this tab';
+  static const invalidFileName = "Invalid file name";
+  static const itMayTakeTime = "It may take a couple of seconds";
 }

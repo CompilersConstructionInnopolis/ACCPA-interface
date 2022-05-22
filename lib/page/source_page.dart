@@ -2,6 +2,8 @@ import 'package:advanced_compilers_web/widget/source_area.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../const/app_const.dart';
+
 class SourcePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -53,8 +55,8 @@ class SourcePage extends StatelessWidget {
             child: const Icon(Icons.play_arrow),
             onPressed: () {
               Get.snackbar(
-                "Running...",
-                "it may take a couple of seconds",
+                AppConst.running,
+                AppConst.itMayTakeTime,
                 snackPosition: SnackPosition.BOTTOM,
                 icon: Icon(Icons.circle, color: Theme.of(context).colorScheme.secondary),
                 shouldIconPulse: true,

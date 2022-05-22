@@ -14,7 +14,7 @@ class AddButton extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white38,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
           ),
           child: const Icon(
             Icons.add_outlined,
