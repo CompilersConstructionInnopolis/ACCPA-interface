@@ -8,13 +8,13 @@ class AppConst {
   // message titles
   static const sorry = 'Sorry';
   static const running = 'Running...';
-  static const success = 'Success!';
-  static const failed = 'Failed :c';
+  static const success = 'Compilation success!';
+  static const failed = 'Compilation failed.';
+  static const somethingWrong = 'Something went wrong...';
 
   // message descriptions
   static const restrictedTabMessage = 'You cannot create or remove this tab';
   static const invalidFileName = "Invalid file name";
   static const itMayTakeTime = "It may take a couple of seconds";
-  static const compilationSuccess = "Your program compiled successfully";
-  static const compilationFail = "Your program failed";
+  static const unknownProblem = "And we don't know what it is :c";
 }

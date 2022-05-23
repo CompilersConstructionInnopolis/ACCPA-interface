@@ -19,7 +19,6 @@ class SourcePage extends StatelessWidget {
       patternMatchMap: SyntaxHighlighting.codePatterns,
       onMatch: (List<String> matches) {},
     );
-    ;
 
     return SafeArea(
       child: Scaffold(
