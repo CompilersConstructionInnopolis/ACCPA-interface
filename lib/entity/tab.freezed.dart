@@ -21,7 +21,7 @@ Tab _$TabFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Tab {
   String? get title => throw _privateConstructorUsedError;
-  String? get code => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +32,7 @@ mixin _$Tab {
 abstract class $TabCopyWith<$Res> {
   factory $TabCopyWith(Tab value, $Res Function(Tab) then) =
       _$TabCopyWithImpl<$Res>;
-  $Res call({String? title, String? code});
+  $Res call({String? title, String? content});
 }
 
 /// @nodoc
@@ -46,16 +46,16 @@ class _$TabCopyWithImpl<$Res> implements $TabCopyWith<$Res> {
   @override
   $Res call({
     Object? title = freezed,
-    Object? code = freezed,
+    Object? content = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -66,7 +66,7 @@ abstract class _$$_TabCopyWith<$Res> implements $TabCopyWith<$Res> {
   factory _$$_TabCopyWith(_$_Tab value, $Res Function(_$_Tab) then) =
       __$$_TabCopyWithImpl<$Res>;
   @override
-  $Res call({String? title, String? code});
+  $Res call({String? title, String? content});
 }
 
 /// @nodoc
@@ -81,16 +81,16 @@ class __$$_TabCopyWithImpl<$Res> extends _$TabCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
-    Object? code = freezed,
+    Object? content = freezed,
   }) {
     return _then(_$_Tab(
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -99,18 +99,18 @@ class __$$_TabCopyWithImpl<$Res> extends _$TabCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Tab implements _Tab {
-  const _$_Tab({this.title, this.code});
+  const _$_Tab({this.title, this.content});
 
   factory _$_Tab.fromJson(Map<String, dynamic> json) => _$$_TabFromJson(json);
 
   @override
   final String? title;
   @override
-  final String? code;
+  final String? content;
 
   @override
   String toString() {
-    return 'Tab(title: $title, code: $code)';
+    return 'Tab(title: $title, content: $content)';
   }
 
   @override
@@ -119,7 +119,7 @@ class _$_Tab implements _Tab {
         (other.runtimeType == runtimeType &&
             other is _$_Tab &&
             const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.code, code));
+            const DeepCollectionEquality().equals(other.content, content));
   }
 
   @JsonKey(ignore: true)
@@ -127,7 +127,7 @@ class _$_Tab implements _Tab {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(code));
+      const DeepCollectionEquality().hash(content));
 
   @JsonKey(ignore: true)
   @override
@@ -141,14 +141,14 @@ class _$_Tab implements _Tab {
 }
 
 abstract class _Tab implements Tab {
-  const factory _Tab({final String? title, final String? code}) = _$_Tab;
+  const factory _Tab({final String? title, final String? content}) = _$_Tab;
 
   factory _Tab.fromJson(Map<String, dynamic> json) = _$_Tab.fromJson;
 
   @override
   String? get title => throw _privateConstructorUsedError;
   @override
-  String? get code => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TabCopyWith<_$_Tab> get copyWith => throw _privateConstructorUsedError;

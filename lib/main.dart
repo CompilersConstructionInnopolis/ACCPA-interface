@@ -1,13 +1,17 @@
 import 'package:advanced_compilers_web/page/source_page.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:get/get.dart';
 
 import '../controller/tab_controller.dart' as tab_controller;
+import 'controller/compiler_controller.dart';
 
 void main() {
   Get.put(tab_controller.TabController());
+  Get.put(Dio());
+  Get.put(CompilerController());
 
   runApp(const MyApp());
 }

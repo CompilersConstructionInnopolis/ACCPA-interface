@@ -39,6 +39,7 @@ dependencies:
   rich_text_controller: ^1.4.0
   freezed:
   json_serializable:
+  dio:
 
 dev_dependencies:
   flutter_test:

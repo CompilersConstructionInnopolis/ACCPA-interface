@@ -7,10 +7,11 @@ import '../entity/tab.dart' as tab_model;
 class TabController extends GetxController {
   final tabs = <tab_model.Tab>[AppConst.defaultTab].obs;
   final currentTabIndex = 0.obs;
+
   // final _lastSelectionPosition = TextSelection.fromPosition(const TextPosition(offset: 0)).obs;
 
   createNewTab({required String title}) {
-    tabs.value.add(tab_model.Tab(title: title, code: ''));
+    tabs.value.add(tab_model.Tab(title: title, content: ''));
     currentTabIndex.value = tabs.value.length - 1;
     tabs.refresh();
     currentTabIndex.refresh();
@@ -19,7 +20,8 @@ class TabController extends GetxController {
   removeTab(tab_model.Tab tab) {
     if (isRestricted(tab)) {
       Get.snackbar(
-        AppConst.sorry, AppConst.restrictedTabMessage,
+        AppConst.sorry,
+        AppConst.restrictedTabMessage,
         snackPosition: SnackPosition.BOTTOM,
         margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 18),
       );
@@ -37,12 +39,12 @@ class TabController extends GetxController {
   }
 
   setCode(String code) {
-    tabs.value[currentTabIndex.value] = tabs.value[currentTabIndex.value].copyWith(code: code);
+    tabs.value[currentTabIndex.value] = tabs.value[currentTabIndex.value].copyWith(content: code);
     tabs.refresh();
   }
 
   String getCode() {
-    return tabs.value[currentTabIndex.value].code ?? "";
+    return tabs.value[currentTabIndex.value].content ?? "";
   }
 
   int getCurrentTabIndex() {
@@ -56,5 +58,4 @@ class TabController extends GetxController {
   bool isRestricted(tab_model.Tab tab) {
     return AppConst.restrictedTabTitles.contains(tab.title);
   }
-
 }

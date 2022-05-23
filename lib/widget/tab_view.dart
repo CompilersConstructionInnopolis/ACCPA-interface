@@ -69,36 +69,38 @@ class TabView extends StatelessWidget {
   _addPressed(context) async {
     print("add button pressed");
     TextEditingController titleFieldController = TextEditingController();
-    await Get.defaultDialog(
-        title: "Create new file",
-        titlePadding: const EdgeInsets.only(top: 24),
-        titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),
-        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        content: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SizedBox(
-                  child: Center(
-                    child: TextField(
-                      style: Theme.of(context).textTheme.bodyText1,
-                      cursorColor: Colors.grey[600],
-                      controller: titleFieldController,
-                      decoration: const InputDecoration.collapsed(hintText: ""),
-                      onSubmitted: (_) => Get.back(),
-                      maxLines: 1,
-                    ),
+    await Get.defaultDialog( // todo autofocus
+      title: "Create new file",
+      titlePadding: const EdgeInsets.only(top: 24),
+      titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),
+      contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      content: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                child: Center(
+                  child: TextField(
+                    style: Theme.of(context).textTheme.bodyText1,
+                    autofocus: true,
+                    cursorColor: Colors.grey[600],
+                    controller: titleFieldController,
+                    decoration: const InputDecoration.collapsed(hintText: ""),
+                    onSubmitted: (_) => Get.back(),
+                    maxLines: 1,
                   ),
                 ),
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
     String title = titleFieldController.text;
     if (!_isTitleValid(title)) {
       Get.snackbar(

@@ -8,7 +8,7 @@ part 'tab.g.dart';
 class Tab with _$Tab {
   const factory Tab({
     String? title,
-    String? code,
+    String? content,
   }) = _Tab;
 
   factory Tab.fromJson(json) => _$TabFromJson(json);

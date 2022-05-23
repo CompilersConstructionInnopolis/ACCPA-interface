@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class SyntaxHighlighting {
   static const List<String> operators = [
+    "Auto",
     "Int",
     "Double",
     "Num",
@@ -19,6 +20,33 @@ class SyntaxHighlighting {
     "type",
     "functype",
     "define",
+    "import",
+    "plus",
+    "minus",
+    "times",
+    "divide",
+    "head",
+    "tail",
+    "cons",
+    "equal",
+    "nonequal",
+    "less",
+    "lesseq",
+    "greater",
+    "greatereq",
+    "isint",
+    "isreal",
+    "isbool",
+    "isnull",
+    "isatom",
+    "islist",
+    "and",
+    "or",
+    "xor",
+    "not",
+    "eval",
+    "isempty",
+    "length",
   ];
 
   static get codePatterns => {

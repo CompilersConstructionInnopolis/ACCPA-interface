@@ -11,20 +11,15 @@ import '../controller/tab_controller.dart' as tab_controller;
 class SourceArea extends StatelessWidget {
   final tabController = Get.find<tab_controller.TabController>();
   final int tabSpaces = 4;
+  final RichTextController sourceCodeController;
 
   SourceArea({
     Key? key,
+    required this.sourceCodeController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final RichTextController _controller = RichTextController(
-      text: tabController.getCode(),
-      patternMatchMap: SyntaxHighlighting.codePatterns,
-      onMatch: (List<String> matches) {
-        // print("matches: ${matches}");
-      },
-    );
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -37,29 +32,29 @@ class SourceArea extends StatelessWidget {
         children: [
           SizedBox(
             height: 42,
-            child: TabView(sourceCodeController: _controller),
+            child: TabView(sourceCodeController: sourceCodeController),
           ),
           Expanded(
             flex: 12,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Obx(() {
-                _controller.text = tabController.getCode();
+                sourceCodeController.text = tabController.getCode();
                 // _controller.selection = tabController.getCodeSelection();
                 return Actions(
                   actions: {InsertIndentationIntent: InsertIndentationAction()},
                   child: Shortcuts(
                     shortcuts: {
-                      LogicalKeySet(LogicalKeyboardKey.tab): InsertIndentationIntent(tabSpaces, _controller),
+                      LogicalKeySet(LogicalKeyboardKey.tab): InsertIndentationIntent(tabSpaces, sourceCodeController),
                     },
                     child: TextField(
                       style: Theme.of(context).textTheme.bodyText1,
                       cursorColor: Colors.grey[600],
-                      controller: _controller,
+                      controller: sourceCodeController,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
                       decoration: const InputDecoration.collapsed(hintText: ""),
-                      onChanged: (String code) => _sourceChanged(code, _controller),
+                      onChanged: (String code) => _sourceChanged(code, sourceCodeController),
                     ),
                   ),
                 );
