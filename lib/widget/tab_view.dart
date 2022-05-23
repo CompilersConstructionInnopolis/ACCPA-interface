@@ -71,7 +71,6 @@ class TabView extends StatelessWidget {
     print("add button pressed");
     TextEditingController titleFieldController = TextEditingController();
     await Get.defaultDialog(
-      // todo autofocus
       title: "Create new file",
       titlePadding: const EdgeInsets.only(top: 24),
       titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),

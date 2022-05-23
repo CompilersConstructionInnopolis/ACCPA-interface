@@ -38,7 +38,6 @@ class ToolBar extends StatelessWidget {
   }
 
   _compilePressed(context) {
-    // todo код не автосохраняется когда нажимаешь Compile
     if (sourceCodeController.text.isNotEmpty) {
       tabController.saveCode(sourceCodeController.text);
     }
