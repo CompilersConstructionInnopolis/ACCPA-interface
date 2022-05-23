@@ -116,7 +116,7 @@ class SourceArea extends StatelessWidget {
         separatorColor: Colors.grey[600]!,
         separatorSize: 2,
         isHorizontalSeparator: true,
-        percentages: const [0.8, 0.2],
+        percentages: const [0.85, 0.15],
       ),
     );
   }

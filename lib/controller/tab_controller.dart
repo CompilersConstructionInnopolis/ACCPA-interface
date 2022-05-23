@@ -38,7 +38,7 @@ class TabController extends GetxController {
     currentTabIndex.refresh();
   }
 
-  setCode(String code) {
+  saveCode(String code) {
     tabs.value[currentTabIndex.value] = tabs.value[currentTabIndex.value].copyWith(content: code);
     tabs.refresh();
   }

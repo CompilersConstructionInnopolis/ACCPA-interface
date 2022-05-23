@@ -7,19 +7,19 @@ import '../const/app_const.dart';
 import '../const/syntax_highlighting.dart';
 import '../controller/compiler_controller.dart';
 import '../controller/tab_controller.dart' as tab_controller;
+import '../widget/toolbar.dart';
 
 class SourcePage extends StatelessWidget {
   final CompilerController compilerController = Get.find();
-  final tab_controller.TabController tabController = Get.find();
+  final tabController = Get.find<tab_controller.TabController>();
+  final RichTextController _sourceCodeController = RichTextController(
+    text: "",
+    patternMatchMap: SyntaxHighlighting.codePatterns,
+    onMatch: (List<String> matches) {},
+  );
 
   @override
   Widget build(BuildContext context) {
-    final RichTextController _sourceCodeController = RichTextController(
-      text: tabController.getCode(),
-      patternMatchMap: SyntaxHighlighting.codePatterns,
-      onMatch: (List<String> matches) {},
-    );
-
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -40,7 +40,7 @@ class SourcePage extends StatelessWidget {
                           style: Theme.of(context).textTheme.headline6,
                         ),
                       ),
-                      _toolBar(context, _sourceCodeController),
+                      ToolBar(sourceCodeController: _sourceCodeController),
                     ],
                   ),
                 ),
@@ -57,31 +57,5 @@ class SourcePage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _toolBar(context, _sourceCodeController) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        SizedBox(
-          child: TextButton(
-            child: const Icon(Icons.play_arrow),
-            onPressed: () {
-              if (_sourceCodeController.text.isNotEmpty) // todo код не автосохраняется когда нажимаешь Compile
-                {tabController.setCode(_sourceCodeController.text);}
-              compilerController.requestCompile();
-              Get.snackbar(
-                AppConst.running,
-                AppConst.itMayTakeTime,
-                snackPosition: SnackPosition.BOTTOM,
-                icon: Icon(Icons.circle, color: Theme.of(context).colorScheme.secondary),
-                shouldIconPulse: true,
-                margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 18),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
 }
+

@@ -53,6 +53,9 @@ class TabView extends StatelessWidget {
               AddButton(
                 onPressed: () => _addPressed(context),
               ),
+              AddButton(
+                onPressed: () => tabController.saveCode(sourceCodeController.text),
+              ),
             ],
           ),
         );
@@ -62,14 +65,15 @@ class TabView extends StatelessWidget {
 
   _tabPressed(tab) {
     print("this tab pressed");
-    tabController.setCode(sourceCodeController.text);
+    tabController.saveCode(sourceCodeController.text);
     tabController.selectTab(tab);
   }
 
   _addPressed(context) async {
     print("add button pressed");
     TextEditingController titleFieldController = TextEditingController();
-    await Get.defaultDialog( // todo autofocus
+    await Get.defaultDialog(
+      // todo autofocus
       title: "Create new file",
       titlePadding: const EdgeInsets.only(top: 24),
       titleStyle: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 18),
@@ -111,7 +115,7 @@ class TabView extends StatelessWidget {
       );
       return;
     }
-    tabController.setCode(sourceCodeController.text);
+    tabController.saveCode(sourceCodeController.text);
     tabController.createNewTab(title: title);
   }
 
