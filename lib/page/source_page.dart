@@ -23,31 +23,23 @@ class SourcePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(64.0),
+          padding: const EdgeInsets.symmetric(horizontal: 64.0).copyWith(top: 20, bottom: 48),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        child: Text(
-                          "+++",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                      ToolBar(sourceCodeController: _sourceCodeController),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "+++",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ],
                 ),
-                // Text("Source code", style: Theme.of(context).textTheme.headline6),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Expanded(
-                  flex: 30,
                   child: SourceArea(sourceCodeController: _sourceCodeController),
                 )
               ],
@@ -58,4 +50,3 @@ class SourcePage extends StatelessWidget {
     );
   }
 }
-

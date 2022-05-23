@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:advanced_compilers_web/widget/tab_tile.dart';
+import 'package:advanced_compilers_web/widget/toolbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
@@ -52,9 +53,6 @@ class TabView extends StatelessWidget {
               ...tabWidgets,
               AddButton(
                 onPressed: () => _addPressed(context),
-              ),
-              AddButton(
-                onPressed: () => tabController.saveCode(sourceCodeController.text),
               ),
             ],
           ),

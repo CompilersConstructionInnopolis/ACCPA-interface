@@ -1,4 +1,5 @@
 import 'package:advanced_compilers_web/widget/tab_view.dart';
+import 'package:advanced_compilers_web/widget/toolbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -78,17 +79,21 @@ class SourceArea extends StatelessWidget {
                 height: 42,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[400]!, width: 2),
-                  color:  Colors.grey[400]!,
+                  color: Colors.grey[400]!,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text(
-                      "Output",
-                      style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
-                      textAlign: TextAlign.start,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Output",
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
+                        textAlign: TextAlign.start,
+                      ),
+                      ToolBar(sourceCodeController: sourceCodeController),
+                    ],
                   ),
                 ),
               ),

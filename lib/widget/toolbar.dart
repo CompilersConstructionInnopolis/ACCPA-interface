@@ -25,26 +25,31 @@ class ToolBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         SizedBox(
-          child: TextButton(
-            child: const Icon(Icons.play_arrow),
-            onPressed: () {
-              // todo код не автосохраняется когда нажимаешь Compile
-              if (sourceCodeController.text.isNotEmpty) {
-                tabController.saveCode(sourceCodeController.text);
-              }
-              compilerController.requestCompile();
-              Get.snackbar(
-                AppConst.running,
-                AppConst.itMayTakeTime,
-                snackPosition: SnackPosition.BOTTOM,
-                icon: Icon(Icons.circle, color: Theme.of(context).colorScheme.secondary),
-                shouldIconPulse: true,
-                margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 18),
-              );
-            },
-          ),
+          child: Obx(() {
+            tabController.getCode();
+            return TextButton(
+              child: const Icon(Icons.play_arrow),
+              onPressed: () => _compilePressed(context),
+            );
+          }),
         ),
       ],
+    );
+  }
+
+  _compilePressed(context) {
+    // todo код не автосохраняется когда нажимаешь Compile
+    if (sourceCodeController.text.isNotEmpty) {
+      tabController.saveCode(sourceCodeController.text);
+    }
+    compilerController.requestCompile();
+    Get.snackbar(
+      AppConst.running,
+      AppConst.itMayTakeTime,
+      snackPosition: SnackPosition.BOTTOM,
+      icon: Icon(Icons.circle, color: Theme.of(context).colorScheme.secondary),
+      shouldIconPulse: true,
+      margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 18),
     );
   }
 }
