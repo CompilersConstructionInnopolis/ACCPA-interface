@@ -11,6 +11,8 @@ class CompilerController extends GetxController {
 
   final String baseUrl = "https://accpa-backend.herokuapp.com";
 
+  final compilationOutput = "".obs;
+
   requestCompile() async {
     List<tab_model.Tab> tabs = tabController.getTabs();
     // print("tabs: $tabs");
@@ -33,6 +35,8 @@ class CompilerController extends GetxController {
         description = "Result: ${result.data['result']}";
         color = Colors.greenAccent;
       }
+      compilationOutput.value += "[${DateTime.now()}] $description\n";
+      compilationOutput.refresh();
       Get.snackbar(
         title,
         description,

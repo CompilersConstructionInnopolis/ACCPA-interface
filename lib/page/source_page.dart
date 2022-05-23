@@ -67,7 +67,8 @@ class SourcePage extends StatelessWidget {
           child: TextButton(
             child: const Icon(Icons.play_arrow),
             onPressed: () {
-              tabController.setCode(_sourceCodeController.text);
+              if (_sourceCodeController.text.isNotEmpty) // todo код не автосохраняется когда нажимаешь Compile
+                {tabController.setCode(_sourceCodeController.text);}
               compilerController.requestCompile();
               Get.snackbar(
                 AppConst.running,
