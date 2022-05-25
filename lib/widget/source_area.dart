@@ -35,40 +35,69 @@ class SourceArea extends StatelessWidget {
       ),
       child: ResizableWidget(
         children: [
-          Column(
+          Stack(
             children: [
-              SizedBox(
-                height: 42,
-                child: TabView(sourceCodeController: sourceCodeController),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 42,
+                    child: TabView(sourceCodeController: sourceCodeController),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(28.0),
+                      child: Obx(() {
+                        sourceCodeController.text = tabController.getCode();
+                        return Actions(
+                          actions: {InsertIndentationIntent: InsertIndentationAction()},
+                          child: Shortcuts(
+                            shortcuts: {
+                              LogicalKeySet(LogicalKeyboardKey.tab):
+                                  InsertIndentationIntent(tabSpaces, sourceCodeController),
+                            },
+                            child: TextField(
+                              style: Theme.of(context).textTheme.bodyText1,
+                              cursorColor: Colors.grey[600],
+                              cursorHeight: 11,
+                              controller: sourceCodeController,
+                              maxLines: null,
+                              keyboardType: TextInputType.multiline,
+                              decoration: const InputDecoration.collapsed(hintText: ""),
+                              onChanged: (String code) => _sourceChanged(code, sourceCodeController),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
               ),
-              Expanded(
-                flex: 12,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Obx(() {
-                    sourceCodeController.text = tabController.getCode();
-                    // _controller.selection = tabController.getCodeSelection();
-                    return Actions(
-                      actions: {InsertIndentationIntent: InsertIndentationAction()},
-                      child: Shortcuts(
-                        shortcuts: {
-                          LogicalKeySet(LogicalKeyboardKey.tab):
-                              InsertIndentationIntent(tabSpaces, sourceCodeController),
-                        },
-                        child: TextField(
-                          style: Theme.of(context).textTheme.bodyText1,
-                          cursorColor: Colors.grey[600],
-                          controller: sourceCodeController,
-                          maxLines: null,
-                          keyboardType: TextInputType.multiline,
-                          decoration: const InputDecoration.collapsed(hintText: ""),
-                          onChanged: (String code) => _sourceChanged(code, sourceCodeController),
+              Positioned(
+                top: 42,
+                child: Container(
+                  width: 24,
+                  decoration: const BoxDecoration(
+                    color: Color(0xffb2b2b2),
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 24),
+                      for (int i = 0; i < 131; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 4.0),
+                          child: Align(
+                            alignment: AlignmentDirectional.centerEnd,
+                            child: Text(
+                              "$i",
+                              style: Theme.of(context).textTheme.bodyText1,
+                              textAlign: TextAlign.end,
+                            ),
+                          ),
                         ),
-                      ),
-                    );
-                  }),
+                    ],
+                  ),
                 ),
-              ),
+              )
             ],
           ),
           Column(
@@ -105,10 +134,18 @@ class SourceArea extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: Obx(() {
-                        return Text(
-                          compilerController.compilationOutput(),
+                        final _outputFieldController =
+                            TextEditingController(text: compilerController.compilationOutput());
+                        return TextField(
+                          readOnly: true,
+                          controller: _outputFieldController,
                           style: Theme.of(context).textTheme.bodyText1,
                           textAlign: TextAlign.start,
+                          maxLines: null,
+                          keyboardType: TextInputType.multiline,
+                          decoration: const InputDecoration.collapsed(hintText: ""),
+                          cursorColor: Colors.grey[600],
+                          cursorHeight: 11,
                         );
                       }),
                     ),
@@ -121,7 +158,7 @@ class SourceArea extends StatelessWidget {
         separatorColor: Colors.grey[600]!,
         separatorSize: 2,
         isHorizontalSeparator: true,
-        percentages: const [0.85, 0.15],
+        percentages: const [0.8, 0.2],
       ),
     );
   }
