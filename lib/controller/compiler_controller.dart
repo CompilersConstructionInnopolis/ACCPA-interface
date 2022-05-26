@@ -32,7 +32,7 @@ class CompilerController extends GetxController {
         color = Colors.redAccent;
       } else if (result.data['result'] != null) {
         title = AppConst.success;
-        description = "Result: ${result.data['result']}";
+        description = result.data['result'];
         color = Colors.greenAccent;
       }
       compilationOutput.value += "[${DateTime.now()}] $description\n";

@@ -35385,7 +35385,7 @@ k=B.Fk
 if(J.al(J.rY(e),"error")!=null){m="Compilation failed."
 l=J.al(J.rY(e),"error")
 k=B.Fd}else if(J.al(J.rY(e),"result")!=null){m="Compilation success!"
-l="Result: "+A.e(J.al(J.rY(e),"result"))
+l=J.al(J.rY(e),"result")
 k=B.Fe}g=n.fr
 g.sl(0,J.PL(g.gl(g),"["+new A.el(Date.now(),!1).i(0)+"] "+A.e(l)+"\n"))
 g.y$.ea(g.gl(g))
